@@ -111,7 +111,7 @@ const Players = {
         name: "兴奋剂",
         desc: "重置1个队友",
         effect(G, ctx, card){
-          for (let p of Object.keys(G.players)){
+          for (let p of ctx.random.Shuffle(Object.keys(G.players))){
             if (G.players[p].exhausted){
               G.players[p].exhausted = false;
               return;
@@ -141,7 +141,7 @@ const Players = {
             else{
               G.players.JuniorMage.exhausted = false;
             }
-            G.hp.bossHP -= damage;
+            G.bossHP -= damage;
           }
 
         }
@@ -170,7 +170,10 @@ const Players = {
         name: "疾跑",
         desc: "(限高牌)检索2张点数为2到5的牌",
         effect(G, ctx, card){
-          for(let i=0;i<2;i++){G.hand.push([ctx.random.Shuffle(["2", "3", "4", "5"])[0], ctx.random.Shuffle(["c", "d", "h", "s"][0])]);}
+          if(["J", "Q", "K", "A"].includes(card[0])){
+          for(let i=0;i<2;i++){
+            G.hand.push([ctx.random.Shuffle(["2", "3", "4", "5"])[0], ctx.random.Shuffle(["c", "d", "h", "s"])[0]]);}
+          }
         }
       }
     ]
