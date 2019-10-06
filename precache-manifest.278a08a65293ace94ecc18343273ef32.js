@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fd126c891d7823482a649653ca9c9290",
+    "revision": "445330e39da408481faaf4f7a0ce1718",
     "url": "/poker_dungeons/index.html"
   },
   {
-    "revision": "335d3d9368de5eecab80",
+    "revision": "6c29b28317e22090b10a",
     "url": "/poker_dungeons/static/css/main.3be263f2.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/poker_dungeons/static/js/2.2b73ccdb.chunk.js"
   },
   {
-    "revision": "335d3d9368de5eecab80",
-    "url": "/poker_dungeons/static/js/main.7f512354.chunk.js"
+    "revision": "6c29b28317e22090b10a",
+    "url": "/poker_dungeons/static/js/main.b24ca34a.chunk.js"
   },
   {
     "revision": "33ede77236d5ce968f08",
