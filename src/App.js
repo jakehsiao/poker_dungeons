@@ -186,7 +186,7 @@ const PokerDungeons = {
   setup: (ctx) => {
     let G = {};
 
-    G.bossHP = 20;
+    G.bossHP = 100;
 
     G.players = Players;
     for (let p in G.players){
@@ -216,6 +216,10 @@ const PokerDungeons = {
 
   turn: {
     onEnd(G, ctx){
+      if (G.bossHP <= 0){
+        alert("你赢了！");
+      }
+
       for (let p in G.players){
         G.players[p].exhausted = false;
       }
@@ -260,7 +264,7 @@ class PlayerCell extends React.Component{
     return player?(
       <div 
       className="player-cell" 
-      style={{borderColor: player.exhausted?"#FF0000":"#000000"}}
+      style={{borderColor: (player.exhausted || player.hp <= 0)?"#FF0000":"#000000"}}
       onClick={()=>{
         let contents = "";
         for (let skill of player.skills){
