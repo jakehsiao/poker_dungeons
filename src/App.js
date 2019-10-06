@@ -51,7 +51,7 @@ const Players = {
         name: "力量召唤",
         desc: "检索1张高牌",
         effect(G, ctx, card){
-          G.hand.push([ctx.random.Shuffle(["J", "Q", "K", "A"])[0], ctx.random.Shuffle(["c", "d", "h", "s"][0])]);
+          G.hand.push([ctx.random.Shuffle(["J", "Q", "K", "A"])[0], ctx.random.Shuffle(["c", "d", "h", "s"])[0]]);
         }
       }
     ]
@@ -94,9 +94,9 @@ const Players = {
         name: "治疗",
         desc: "治疗血量最低的队友3点血量",
         effect(G, ctx, card){
-          let cured_player = G.players.Warrior; // TODO: change this
+          let cured_player = Object.keys(G.players)[0]; // TODO: change this
           let lowest_hp = 1000;
-          for (let p in G.players){
+          for (let p in ctx.random.Shuffle(G.players)){
             if (G.players[p].hp < lowest_hp){
               lowest_hp = G.players[p].hp
               cured_player = p;
@@ -104,7 +104,7 @@ const Players = {
             
           }
 
-          cured_player.hp += 3;
+          G.players[cured_player].hp += 3;
         }
       },
       {
