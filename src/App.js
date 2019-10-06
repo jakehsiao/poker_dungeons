@@ -292,6 +292,7 @@ class PlayerCell extends React.Component{
         let contents = "";
         for (let skill of player.skills){
           console.log(skill);
+          contents += "• ";
           contents += skill.name;
           contents += ":";
           contents += skill.desc;
