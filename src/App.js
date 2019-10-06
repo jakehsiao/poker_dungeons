@@ -31,7 +31,7 @@ function boss_move(G, ctx){
 // Warrior, Militia, Medic, Mage, Assassin
 
 const Players = {
-  Warrior: {
+  战士: {
     hp: 15,
     i: 0,
     j: 1,
@@ -57,7 +57,7 @@ const Players = {
     ]
 
   },
-  Militia: {
+  民兵: {
     hp: 12,
     i: 1,
     j: 0,
@@ -85,7 +85,7 @@ const Players = {
     ],
 
   },
-  Medic: {
+  治疗兵: {
     hp: 10,
     i: 1,
     j: 2,
@@ -123,7 +123,7 @@ const Players = {
     ],
 
   },
-  JuniorMage: {
+  见习法师: {
     hp: 10,
     i: 2,
     j: 0,
@@ -150,7 +150,7 @@ const Players = {
     ]
 
   },
-  Assassin: {
+  刺客: {
     hp: 10,
     i: 2,
     j: 2,
