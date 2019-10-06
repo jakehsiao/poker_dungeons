@@ -16,16 +16,32 @@ function get_random_card(ctx){
 function boss_move(G, ctx){
   let actions = [
   // Single damage
-  (G,ctx) => {G.players[ctx.random.Shuffle(Object.keys(G.players))[0]].hp -= 6;},
+  (G,ctx) => {
+    G.players[ctx.random.Shuffle(Object.keys(G.players))[0]].hp -= 6;
+    G.messages.unshift("Boss对一名队友造成了6点伤害");
+  },
   // AOE
-  (G,ctx) => {for (let p in G.players) G.players[p].hp -= 3;},
+  (G,ctx) => {
+    for (let p in G.players) G.players[p].hp -= 3;
+    G.messages.unshift("Boss对每名队友造成了3点伤害");
+  },
   // Drop cards
-  (G,ctx) => {for (let i=0;i<2;i++) G.hand.pop();},
+  (G,ctx) => {
+    for (let i=0;i<2;i++) G.hand.pop();
+    G.messages.unshift("Boss弃掉了你2张牌");
+  },
   // Exhaust
-  (G,ctx) => {for (let i=0;i<2;i++) G.players[ctx.random.Shuffle(Object.keys(G.players))[0]].exhausted=true;}
+  (G,ctx) => {
+    for (let i=0;i<2;i++) G.players[ctx.random.Shuffle(Object.keys(G.players))[0]].exhausted=true;
+    G.messages.unshift("Boss横置了2名队友");
+  }
   ];
 
   ctx.random.Shuffle(actions)[0](G, ctx);
+  if(G.bossHP <= 30){
+    ctx.random.Shuffle(actions)[0](G, ctx);
+
+  }
 }
 
 // Warrior, Militia, Medic, Mage, Assassin
@@ -96,7 +112,7 @@ const Players = {
         effect(G, ctx, card){
           let cured_player = Object.keys(G.players)[0]; // TODO: change this
           let lowest_hp = 1000;
-          for (let p in ctx.random.Shuffle(G.players)){
+          for (let p in ctx.random.Shuffle(Object.keys(G.players))){
             if (G.players[p].hp < lowest_hp){
               lowest_hp = G.players[p].hp
               cured_player = p;
@@ -160,7 +176,7 @@ const Players = {
         desc: "造成2点伤害，如果使用的牌点数在2-5之间，则重置自己",
         effect(G, ctx, card){
           let damage = 2;
-          if (["2", "3", "4", "5"].includes(card[0])){
+          if ([2,3,4,5].includes(card[0])){
             G.players.刺客.exhausted = false;
           }
           G.bossHP -= damage;
@@ -172,7 +188,7 @@ const Players = {
         effect(G, ctx, card){
           if(["J", "Q", "K", "A"].includes(card[0])){
           for(let i=0;i<2;i++){
-            G.hand.push([ctx.random.Shuffle(["2", "3", "4", "5"])[0], ctx.random.Shuffle(["c", "d", "h", "s"])[0]]);}
+            G.hand.push([ctx.random.Shuffle([2,3,4,5])[0], ctx.random.Shuffle(["c", "d", "h", "s"])[0]]);}
           }
         }
       }
@@ -198,6 +214,8 @@ const PokerDungeons = {
       G.hand.push(get_random_card(ctx));
     }
 
+    G.messages = ["游戏玩法：点击人物头像以查看人物技能，选择要用的扑克牌，然后选择相应的人物和技能，即可发动技能，规划好手牌的使用是胜利的关键！"];
+
     return G;
   },
 
@@ -208,6 +226,11 @@ const PokerDungeons = {
         G.players[playerIndex].exhausted = true;
 
         G.players[playerIndex].skills[skillIndex].effect(G, ctx, card);
+
+        G.messages.unshift(playerIndex+"用"+card[0]+card[1]+"触发了 "+G.players[playerIndex].skills[skillIndex].name+" 技能");
+      }
+      else{
+        G.messages.unshift("该人物被横置或已被击败，无法使用");
       }
 
     },
@@ -242,7 +265,7 @@ class BossBoard extends React.Component{
   render() {
     return (
       <div className="boss-board">
-        <p>Boss HP: {this.props.bossHP}</p>
+        <p style={{color:this.props.bossHP<=30?"red":"black"}}>Boss HP: {this.props.bossHP}</p>
       </div>
     )
   }
@@ -392,6 +415,14 @@ class Board extends React.Component{
     <div>
       <BossBoard bossHP={this.props.G.bossHP}/>
       <table><tbody>{tbody}</tbody></table>
+      <div 
+      className="message-block"
+      onClick={() => {
+        let contents = "";
+        for(let i=0;i<Math.min(5,this.props.G.messages.length);i++)contents += "• " + this.props.G.messages[i] + "\n";
+        alert(contents);
+      }}
+      >{this.props.G.messages[0]}</div>
       <Controller 
       players={this.props.G.players} 
       hand={this.props.G.hand}
