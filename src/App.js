@@ -139,7 +139,7 @@ const Players = {
               damage += 2;
             }
             else{
-              G.players.JuniorMage.exhausted = false;
+              G.players.见习法师.exhausted = false;
             }
             G.bossHP -= damage;
           }
@@ -161,7 +161,7 @@ const Players = {
         effect(G, ctx, card){
           let damage = 2;
           if (["2", "3", "4", "5"].includes(card[0])){
-            G.players.Assassin.exhausted = false;
+            G.players.刺客.exhausted = false;
           }
           G.bossHP -= damage;
         }
