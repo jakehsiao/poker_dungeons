@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/poker_dungeons/static/css/main.3be263f2.chunk.css",
-    "main.js": "/poker_dungeons/static/js/main.b24ca34a.chunk.js",
-    "main.js.map": "/poker_dungeons/static/js/main.b24ca34a.chunk.js.map",
+    "main.js": "/poker_dungeons/static/js/main.a957f91b.chunk.js",
+    "main.js.map": "/poker_dungeons/static/js/main.a957f91b.chunk.js.map",
     "runtime-main.js": "/poker_dungeons/static/js/runtime-main.a105c94d.js",
     "runtime-main.js.map": "/poker_dungeons/static/js/runtime-main.a105c94d.js.map",
     "static/js/2.2b73ccdb.chunk.js": "/poker_dungeons/static/js/2.2b73ccdb.chunk.js",
     "static/js/2.2b73ccdb.chunk.js.map": "/poker_dungeons/static/js/2.2b73ccdb.chunk.js.map",
     "index.html": "/poker_dungeons/index.html",
-    "precache-manifest.278a08a65293ace94ecc18343273ef32.js": "/poker_dungeons/precache-manifest.278a08a65293ace94ecc18343273ef32.js",
+    "precache-manifest.0b397e12af65d15191bdc1ad184e3f0b.js": "/poker_dungeons/precache-manifest.0b397e12af65d15191bdc1ad184e3f0b.js",
     "service-worker.js": "/poker_dungeons/service-worker.js",
     "static/css/main.3be263f2.chunk.css.map": "/poker_dungeons/static/css/main.3be263f2.chunk.css.map",
     "static/media/logo.svg": "/poker_dungeons/static/media/logo.25bf045c.svg"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.a105c94d.js",
     "static/js/2.2b73ccdb.chunk.js",
     "static/css/main.3be263f2.chunk.css",
-    "static/js/main.b24ca34a.chunk.js"
+    "static/js/main.a957f91b.chunk.js"
   ]
 }
