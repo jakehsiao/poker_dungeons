@@ -112,9 +112,11 @@ const Players = {
         effect(G, ctx, card){
           let cured_player = Object.keys(G.players)[0]; // TODO: change this
           let lowest_hp = 1000;
-          for (let p in ctx.random.Shuffle(Object.keys(G.players))){
+          for (let p of ctx.random.Shuffle(Object.keys(G.players))){
+            console.log(p);
+            console.log("Debug player hp", G.players[p]);
             if (G.players[p].hp < lowest_hp){
-              lowest_hp = G.players[p].hp
+              lowest_hp = G.players[p].hp;
               cured_player = p;
             }
             
