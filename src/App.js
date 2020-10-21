@@ -22,8 +22,8 @@ function boss_move(G, ctx){
   },
   // AOE
   (G,ctx) => {
-    for (let p in G.players) G.players[p].hp -= 3;
-    G.messages.unshift("Boss对每名队友造成了3点伤害");
+    for (let p in G.players) G.players[p].hp -= 2;
+    G.messages.unshift("Boss对每名队友造成了2点伤害");
   },
   // Drop cards
   (G,ctx) => {
@@ -130,7 +130,7 @@ const Players = {
         desc: "重置1个队友",
         effect(G, ctx, card){
           for (let p of ctx.random.Shuffle(Object.keys(G.players))){
-            if (G.players[p].exhausted){
+            if (G.players[p].exhausted && G.players[p] != card){
               G.players[p].exhausted = false;
               return;
             }
@@ -204,7 +204,7 @@ const PokerDungeons = {
   setup: (ctx) => {
     let G = {};
 
-    G.bossHP = 100;
+    G.bossHP = 60;
 
     G.players = Players;
     for (let p in G.players){
