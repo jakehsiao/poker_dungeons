@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/poker_dungeons/precache-manifest.6c5c60442a0362d84af52f249e54177e.js"
+  "/poker_dungeons/precache-manifest.c5ae7f7f719850d132f2bc94935e7d44.js"
 );
 
 self.addEventListener('message', (event) => {
